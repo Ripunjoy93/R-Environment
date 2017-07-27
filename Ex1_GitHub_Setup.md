@@ -8,24 +8,26 @@ In this busy life, version control become an essential part for development or a
 * Git : Install Git and set it to the $PATH. [Know more about Git installation](https://git-scm.com/) 
 * GitHub : Create an account in GitHub. [Click Here](https://github.com/)
 
-**Setup steps :** *Before that create a RProject* 
-1. Activate Git on your sytem by following steps : 
-  * From RStudio, **Tools -&gt; Version Control** and select **Git** 
-  * go-to **Tools -&gt; Global Options** 
-  * Click on **Git/SVN** 
-  * Select(tick) *Enable Version Control Interface for RStudio Projects* 
-  * Make sure PATH to the **Git executable** is correct: eg: */usr/bin/git* (path where you installed git)   * Now click on the button **Create RSA Key** 
-  * Now a window will pop-up, close the window. Click **View public key**. Copy the key and close the pop-up window. 
-  * Apply changes and save OK. 
+**Setup steps :** *Before that create a RProject*  
+1. Activate Git on your sytem by following steps :
+   * From RStudio, **Tools -&gt; Version Control** and select **Git**
+   * go-to **Tools -&gt; Global Options** 
+   * Click on **Git/SVN** 
+   * Select(tick) *Enable Version Control Interface for RStudio Projects* 
+   * Make sure PATH to the **Git executable** is correct: eg: */usr/bin/git* (path where you installed git)
+   * Now click on the button **Create RSA Key** 
+   * Now a window will pop-up, close the window. Click **View public key**. Copy the key and close the pop-up window. 
+   * Apply changes and save OK. 
 2. Connect to GitHub using RSA public Key 
-  * Here you need to have a GitHub account. If you don't have create one.
-  * Open your account setting.  Click on **SSH keys**. Click on **Add SSH key** and paste and save the   `public SSH` key your copied from *RStudio*.
+   * Here you need to have a GitHub account. If you don't have create one.
+   * Open your account setting.  Click on **SSH keys**. Click on **Add SSH key** and paste and save the   `public SSH` key your copied from *RStudio*.
 
 3. Setting your username and email in Git. [View More](https://help.github.com/articles/setting-your-username-in-git/)
-  * You can set-up your user.name and email for all the repositories (or for single repository) 
-  * go-to : **Tools -&gt; Shell** = It will open a command promt in your current project path. 
-  * for all repositories : 
-  ```bash   git config --global user.email "abcd@domain.com"   git config --global user.name "Your Name"``` 
+   * You can set-up your user.name and email for all the repositories (or for single repository) 
+   * go-to : **Tools -&gt; Shell** = It will open a command promt in your current project path. 
+   * for all repositories :  
+   ```git config --global user.email "abcd@domain.com"```    
+   ```git config --global user.name "Your Name"``` 
   * for current repository : 
   ```bash   git config user.email "abcd@domain.com"   git config user.name "Your Name"``` 
   * check if it is set up correctly or not by ```bash git config --list```
