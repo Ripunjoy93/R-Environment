@@ -47,4 +47,4 @@ In this busy life, version control become an essential part for development or a
     * Pull the GitHub remote repo to local: ```git pull origin master``` (`you can change the branch name master to some other brach`: for all this read the git documentation)
     * Push the commited changes to GitHub: ```git push origin master```
     * Now you will be able to see your R Script in GitHub
->
+> Go through this [link](https://gist.github.com/blackfalcon/8428401) while working with git and GitHub if there is some confusion.
