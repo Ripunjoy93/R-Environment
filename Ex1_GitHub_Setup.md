@@ -28,8 +28,13 @@ In this busy life, version control become an essential part for development or a
    * for all repositories :  
    ```git config --global user.email "abcd@domain.com"```    
    ```git config --global user.name "Your Name"``` 
-  * for current repository : 
-  ```bash   git config user.email "abcd@domain.com"   git config user.name "Your Name"``` 
-  * check if it is set up correctly or not by ```bash git config --list```
+  * for current repository :  
+  ```bash   git config user.email "abcd@domain.com"```  
+  ```git config user.name "Your Name"``` 
+  * check if it is set up correctly or not by - ```git config --list```
 
-**Creating a New Git Project and connect it to Git and Github :** 1. After the above steps, lets create a new project **File -&gt; New Project**. Select the directory for the project and `tick` the `Create a git repository` check box. 2. Create a new RScript.R, or Rmarkdown or notebook. **File -&gt; New File -&gt; R Script**. Write your code in the file. 3. Go-to **Tools -&gt; Version Control -&gt; History**. Check the **Changes and History** tabs. You will find your R Script there. 4. First lets commit to the local computer repsitory. Select the script you want to commit (it will turn to a green `A`). Write the commit message and commit it. You can check if in *History* about this commit in the same way described in point 3. If you change the file or its code. You can find it in *Changes* and can commit again. 5.
+**Creating a New Git Project and connect it to Git and Github :**   
+1. After the above steps, lets create a new project **File -&gt; New Project**. Select the directory for the project and `tick` the `Create a git repository` check box.
+2. Create a new RScript.R, or Rmarkdown or notebook. **File -&gt; New File -&gt; R Script**. Write your code in the file.
+3. Go-to **Tools -&gt; Version Control -&gt; History**. Check the **Changes and History** tabs. You will find your R Script there.
+4. First lets commit to the local computer repsitory. Select the script you want to commit (it will turn to a green `A`). Write the commit message and commit it. You can check if in *History* about this commit in the same way described in point 3. If you change the file or its code. You can find it in *Changes* and can commit again.
