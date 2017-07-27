@@ -48,3 +48,11 @@ In this busy life, version control become an essential part for development or a
     * Push the commited changes to GitHub: ```git push origin master```
     * Now you will be able to see your R Script in GitHub
 > Go through this [link](https://gist.github.com/blackfalcon/8428401) while working with git and GitHub if there is some confusion.
+
+**Clone an existing GitHub project to RStudio**
+*This is always a better way to make changes to GitHub project. First create a repository in GitHub then clone it rather then Separety creating a R project as well as GitHub repository and then linking them*
+    * RStudio, go-to **New Project -> Version Control**
+    * In *Clone Git Repository* enter GitHub repository URL. Checkout.
+    * Go-to **Tools -> Shell**
+    * ``git config remote.origin.url https://github.com/UserName/Project-Name.git```
+    * Now you are ready to GO.
