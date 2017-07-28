@@ -55,6 +55,6 @@ In this busy life, version control become an essential part for development or a
    * RStudio, go-to **New Project -> Version Control**
    * In *Clone Git Repository* enter GitHub repository URL. Checkout.
    * Go-to **Tools -> Shell**
-   * ``git config remote.origin.url https://github.com/UserName/Project-Name.git```
+   * ```git config remote.origin.url https://github.com/UserName/Project-Name.git```
    * Now you are ready to GO.
  > This is always a better way to make changes to GitHub project. First create a repository in GitHub then clone it rather then Separety creating a R project as well as GitHub repository and then linking them.
