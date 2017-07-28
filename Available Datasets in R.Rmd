@@ -1,0 +1,58 @@
+---
+title: "Available Datasets in R"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                        fig.path = "images/")
+```
+
+For learning or testing purpose many a time we need some data in our R working environment. There are lots of built in data sets available with base R as well as the R packages we installed. We can view the list of data available in each packages as well as can make use of it.
+
+> I am showing the packages available in my enviroment. You might or might not have these packages. Try to follow the steps with refer to your available packages.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+  
+  #First check the list of data sets available in base R in the package datasets
+  data()
+  # Datasets available in all the installed packages
+  data(package = .packages(all.available = TRUE))
+
+  # Datasets in a particular package
+  data(package = "caret")
+
+  # Load data from base R package datasets
+  data("mtcars")
+
+  # Read description about the dataset
+  ?mtcars
+
+```
+
+```{r}
+# The data frame
+  head(mtcars)
+
+```
+
+```{r, message=FALSE, warning=FALSE}
+# OR
+  df <- mtcars
+
+  # OR df <- packagename::dataset_name
+  df <- datasets::mtcars
+
+
+  # Data from caret package
+  data("dhfr",package = "caret")
+```
+
+
+Sometimes there might be difficulties while making a dataframe from some packages when the object is loaded as value.
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+  data("gadmCHE",package = "leaflet")
+  # Then create dataFrame using following
+  df <- as.data.frame(gadmCHE)
+```
+
