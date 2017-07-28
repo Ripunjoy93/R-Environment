@@ -33,21 +33,23 @@ In this busy life, version control become an essential part for development or a
   ```git config user.name "Your Name"``` 
   * check if it is set up correctly or not by - ```git config --list```
 
-**Creating a New Git Project and connect it to Git and Github :**   
+**Creating a New R Project and connect it to Git and Github :**   
 1. After the above steps, lets create a new project **File -&gt; New Project**. Select the directory for the project and `tick` the `Create a git repository` check box. `Don't forget to set up the user.name and email for current project if you didn't set it up globally`
 2. Create a new RScript.R, or Rmarkdown or notebook. **File -&gt; New File -&gt; R Script**. Write your code in the file.
 3. Go-to **Tools -&gt; Version Control -&gt; History**. Check the **Changes and History** tabs. You will find your R Script there.
 4. First lets commit to the local computer repsitory. Select the script you want to commit (it will turn to a green `A`). Write the commit message and commit it. You can check if in *History* about this commit in the same way described in point 3. If you change the file or its code. You can find it in *Changes* and can commit again.
 5. Now we will link the R-project to github and **push** the **commited** changes to GitHub. `Go through the git documentation to get familiar with different concepts`
     * Create a new repository in GitHub. Let **My First Projct**. Copy the url `eg:https://github.com/UserName/My-First-Project.git`
-    * Goto **Tools -> Shell** (it will take you to the local project path in command prompt)
+    * Goto **Tools -> Shell** (it will take you to the local project path in command prompt/GitBash)
     * Add remote github repository to your local repository: ```git remote add origin https://github.com/UserName/My-First-Project.git```
     * Verify the remote: ```git remote -v```.
     * Now you can also configure you GitHub url once u added : ```git config remote.origin.url https://github.com/UserName/Changing-Project-Name.git```
-    * Pull the GitHub remote repo to local: ```git pull origin master``` (`you can change the branch name master to some other brach`: for all this read the git documentation)
-    * Push the commited changes to GitHub: ```git push origin master```
+    * After that add link of local branch to remote : ```git branch --set-upstream-to=origin/master```
+    * Pull the GitHub remote repo to local: ```git pull``` (`you can change the branch name master to some other brach`: for all this read the git documentation)
+    * Push the commited changes to GitHub: ```git push```
     * Now you will be able to see your R Script in GitHub
 > Go through this [link](https://gist.github.com/blackfalcon/8428401) while working with git and GitHub if there is some confusion.
+> Always make the changes first in local (whether it is creating a brach or editing README.md file) and commit and push. Try avoiding editing in remote.
 
 **Clone an existing GitHub project to RStudio :**
    * RStudio, go-to **New Project -> Version Control**
