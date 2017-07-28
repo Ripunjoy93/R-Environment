@@ -1,5 +1,5 @@
 ---
-title: "MongoDB and R"
+title: "COnnecting MongoDB and querying data from R"
 output: github_document
 ---
 
@@ -7,3 +7,4 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE,
                       fig.path = "images/")
 ```
+
