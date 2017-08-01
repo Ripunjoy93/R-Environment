@@ -289,4 +289,12 @@ head(dfmr1,5)
     ## 4            300   7748
     ## 5            400  21182
 
-\*There are many more functionalities we can perform in MongoDB from R. &gt; Drop database/collection : connectionLocal*d**r**o**p*() &gt; *R**e**m**o**v**e**s**o**m**e**r**o**w**s* : *c**o**n**n**e**c**t**i**o**n**L**o**c**a**l*remove('{"Carrier":"UA"}') &gt; Remove only one row : connectionLocal$remove('{"Carrier":"UA"}', just\_one = TRUE) &gt; Remove all records but not the collection : connectionLocal$remove() &gt; We can also import, expoer **JSON, BSON** files &gt; Update a single row/document : connectionLocal$update('{"carrier":"UA"}', '{"$set":{"distance": 1111}}') &gt; Update entire rows/documents : connectionLocal$update('{}','{"carrier":"UA"}', '{"$set":{"distance": 1111}}',multiple = TRUE) &gt; Add if no matches found : connectionLocal$update('{"carrier":"UA"}', '{"$set":{"distance": 1111}}', upsert = TRUE)
+**There are many more functionalities we can perform in MongoDB from R.**
+> Drop database/collection : connectionLocal$drop()
+> Remove some rows : connectionLocal$remove('{"Carrier":"UA"}')
+> Remove only one row : connectionLocal$remove('{"Carrier":"UA"}', just_one = TRUE)
+> Remove all records but not the collection : connectionLocal$remove()
+> We can also import, expoer **JSON, BSON** files
+> Update a single row/document : connectionLocal$update('{"carrier":"UA"}', '{"$set":{"distance": 1111}}')
+> Update entire rows/documents : connectionLocal$update('{}','{"carrier":"UA"}', '{"$set":{"distance": 1111}}',multiple = TRUE)
+> Add if no matches found : connectionLocal$update('{"carrier":"UA"}', '{"$set":{"distance": 1111}}', upsert = TRUE)

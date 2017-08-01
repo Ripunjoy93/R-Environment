@@ -148,7 +148,7 @@ colnames(dfmr1) <- c("scale_distance", "counts")
 head(dfmr1,5)
 ```
 
-*There are many more functionalities we can perform in MongoDB from R.
+**There are many more functionalities we can perform in MongoDB from R.**
 > Drop database/collection : connectionLocal$drop()
 > Remove some rows : connectionLocal$remove('{"Carrier":"UA"}')
 > Remove only one row : connectionLocal$remove('{"Carrier":"UA"}', just_one = TRUE)
