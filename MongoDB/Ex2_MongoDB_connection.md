@@ -15,7 +15,7 @@ If you are new to MongoDB and want to know more go through the following links :
 
 There are many MongoDB client for R. I will be using **mongolite**, which is fast and simple.
 
-1.  First of all, lets call the **mongolite** package from R:
+**First of all, lets call the `mongolite` package from R :**
 
 ``` r
 if(require(mongolite)){
@@ -33,7 +33,7 @@ if(require(mongolite)){
 
     ## [1] "mongolite is loaded correctly"
 
-1.  Run local MongoDB:
+**Run local MongoDB :**
 
 -   Go-to ur MongoDB install path and open command prompt/or from command prompt go to your path: `eg: /usr/MongoDB/bin`
 -   Start MongoDB by `mongod` from your shell or command line
