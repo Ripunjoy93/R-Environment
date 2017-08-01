@@ -42,3 +42,118 @@ if(require(mongolite)){
 * Go-to ur MongoDB install path and open command prompt/or from command prompt go to your path: `eg: /usr/MongoDB/bin`
 * Start MongoDB by `mongod` from your shell or command line
 * Now your MongoDB is running locally in port `27017`
+
+**Connect MongoDB local server :**
+
+* Initiate a connection to MogoDB Server.
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# 1. Connection to Local Server initiated by mongod : 27017 is the port where mongodb server is running
+connectionLocal <- mongo(url = "mongodb://localhost:27017")
+print(connectionLocal)
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# 2. Connecting to a remote server running in some host and port
+# mongodb://[username:password@]host1[:port1][,host2[:port2],...[/[database][?options]]
+
+# Let us consider we have a collection 'income-data' in 'people-database' running in a server (192.0.something.something or some-domain)
+
+# connection <- mongo(url = "mongodb://my-username:my-password@somedomain:port")
+# commented it, because I don't really have such user name and password
+
+# Rather conncting to a public data-base
+connection <- mongo("flights", url = "mongodb://readwrite:test@ds043942.mongolab.com:43942/jeroen_test")
+# -> here collection is 'flights' and database 'jeroen_test'; username:readwrite; password:test; host?:ds043942.mongolab.com; port:jeroen_test
+```
+
+* Create a collection and Insert Data
+```{r}
+# Get some data from "nycflights" R package: Let "flights" data
+data("flights", package = "nycflights13")
+head(flights, 5)
+# By default if we don't mention the collection & db while connecting MongoDB server it is taken as 'test' and 'test' : Lets define that in connectionLocal object 
+connectionLocal <- mongo(collection = "fligts-data",db = "Rmongolite",url = "mongodb://localhost:27017")
+# Insert AirQuality data
+connectionLocal$insert(flights)
+# If you want to put same data again in the same collection (just to check): you can just write the above command again
+
+# We successfully inserted the data
+# Now you can view the data in the DB and Collection in MongoDB management tolls like 'Robomongo'
+
+# Check How many rows are available to varify (I am running the same code again and again; so the count may be original(ie.336776)*somenumber(1 or 2 or more))
+connectionLocal$count()
+```
+* Query data from MongoDB : you can query all the available data in a collection or query specific subset of data from the collection. (MongoDB uses **JSON based Syntax** to query data)
+  
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# 1. Get all the from a collection: our flights collection is connected by ConnectionLocal object
+#connectionLocal$find()
+# OR : empty '{}' means get all the data
+#connectionLocal$find('{}')
+
+# 2. Read all the Data into R (create a R DataFrame)
+df <- connectionLocal$find()
+head(df,5)
+
+# 3. Query by using some logical expression. Get the data where : carrier=="UA" and distnace>1000
+dfq1 <- connectionLocal$find('{"carrier":"UA","distance" : {"$gt":1000}}')
+head(dfq1,5)
+
+# 4. Filter Fields : Get only few required fields (let: arr_delay,carrier,origin,dest,distance) combine with the previous query
+dfq2 <- connectionLocal$find(
+  query = '{"carrier":"UA","distance" : {"$gt":1000}}',
+  fields = '{"arr_delay":true, "carrier":true, "origin":true, "dest" : true, "distance":true}'
+  )
+head(dfq2,5)
+# while filtering random UUID will be created automatically, If you don't want it need to explicitly mention -> "_id" : false
+
+# 5. Sort and limit : limit is for restrict the number of outputs(let 10), lets sort in desscending order
+dfq3 <- connectionLocal$find(
+  query = '{"carrier":"UA","distance" : {"$gt":1000}}',
+  fields = '{"_id":false,"arr_delay":true, "carrier":true, "origin":true, "dest" : true, "distance":true}',
+  sort = '{"distance" : -1}',
+  limit = 15
+  )
+# Check the dimension of the DataFrame
+dim(dfq3)
+head(dfq3,5)
+
+# 6. Select by Date : greater than 2013-08-25T18:00:00Z
+dfq4 <- connectionLocal$find(
+  query = '{"time_hour": { "$gte" : { "$date" : "2013-08-25T18:00:00Z" }}}',
+  fields = '{"time_hour" : true, "carrier" : true, "origin":true, "_id": false}'
+)
+head(dfq4,5)
+
+# Many other operations like indexing, iterating are also can be performed -> explore yourself :)
+```
+
+* Aggregation of data using aggregate() method
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+dfagr1 <- connectionLocal$aggregate(
+  '[{"$group":{"_id":"$carrier", "count": {"$sum":1}, "average":{"$avg":"$distance"}}}]',
+  options = '{"allowDiskUse":true}'
+)
+
+head(dfagr1,5)
+```
+
+* MapReduce : map and reduce operations by giving custom functions in JavaScript
+```{r}
+dfmr1 <- connectionLocal$mapreduce(
+  map = "function(){emit(Math.floor(this.distance/100)*100, 1)}", 
+  reduce = "function(id, count){return Array.sum(count)}"
+)
+colnames(dfmr1) <- c("scale_distance", "counts")
+head(dfmr1,5)
+```
+
+*There are many more functionalities we can perform in MongoDB from R.
+> Drop database/collection : connectionLocal$drop()
+> Remove some rows : connectionLocal$remove('{"Carrier":"UA"}')
+> Remove only one row : connectionLocal$remove('{"Carrier":"UA"}', just_one = TRUE)
+> Remove all records but not the collection : connectionLocal$remove()
+> We can also import, expoer **JSON, BSON** files
+> Update a single row/document : connectionLocal$update('{"carrier":"UA"}', '{"$set":{"distance": 1111}}')
+> Update entire rows/documents : connectionLocal$update('{}','{"carrier":"UA"}', '{"$set":{"distance": 1111}}',multiple = TRUE)
+> Add if no matches found : connectionLocal$update('{"carrier":"UA"}', '{"$set":{"distance": 1111}}', upsert = TRUE)
