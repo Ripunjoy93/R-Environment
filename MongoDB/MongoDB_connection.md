@@ -290,11 +290,19 @@ head(dfmr1,5)
     ## 5            400  21182
 
 **There are many more functionalities we can perform in MongoDB from R.**
-> Drop database/collection : connectionLocal$drop()
-> Remove some rows : connectionLocal$remove('{"Carrier":"UA"}')
-> Remove only one row : connectionLocal$remove('{"Carrier":"UA"}', just_one = TRUE)
-> Remove all records but not the collection : connectionLocal$remove()
-> We can also import, expoer **JSON, BSON** files
-> Update a single row/document : connectionLocal$update('{"carrier":"UA"}', '{"$set":{"distance": 1111}}')
-> Update entire rows/documents : connectionLocal$update('{}','{"carrier":"UA"}', '{"$set":{"distance": 1111}}',multiple = TRUE)
-> Add if no matches found : connectionLocal$update('{"carrier":"UA"}', '{"$set":{"distance": 1111}}', upsert = TRUE)
+
+> Drop database/collection : connectionLocal$drop()  
+
+> Remove some rows : connectionLocal$remove('{"Carrier":"UA"}')  
+
+> Remove only one row : connectionLocal$remove('{"Carrier":"UA"}', just_one = TRUE) 
+
+> Remove all records but not the collection : connectionLocal$remove()  
+
+> We can also import, expoer **JSON, BSON** files  
+
+> Update a single row/document : connectionLocal$update('{"carrier":"UA"}', '{"$set":{"distance": 1111}}')  
+
+> Update entire rows/documents : connectionLocal$update('{}','{"carrier":"UA"}', '{"$set":{"distance": 1111}}',multiple = TRUE)  
+
+> Add if no matches found : connectionLocal$update('{"carrier":"UA"}', '{"$set":{"distance": 1111}}', upsert = TRUE)  
